@@ -3,7 +3,7 @@ services:
   # The app service
   apk-releaser:
     # Rename it jizo to avoir being named `apk-releaser-1`
-    container_name: apk_releaser_dev
+    container_name: apk_releaser
     # Point to the dev.Dockerfile used for the build
     build:
       # dev.Dockerfile which is located in the same directory as the docker-compose.yaml
@@ -50,7 +50,7 @@ services:
     # Using the postgreSQL official image
     image: postgres
     # Rename it postgres to avoid being named 'db-1'
-    container_name: apk_releaser_postgres_dev
+    container_name: apk_releaser_postgres
     # Define every required environment variables
     environment:
       POSTGRES_USER: "${POSTGRES_USER}"
