@@ -36,6 +36,8 @@ DEBUG = bool(env('DEBUG'))
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(",")
 
+print(CSRF_TRUSTED_ORIGINS)
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
@@ -63,7 +65,7 @@ MIDDLEWARE = [
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -155,3 +157,4 @@ WHITENOISE_ALLOW_ALL_ORIGINS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 APPEND_SLASH = True
+CSRF_COOKIE_SECURE = False
