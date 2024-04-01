@@ -19,25 +19,26 @@ services:
     # Link the network to the container
     networks:
       - apk-releaser
-      - traefik
+      - routing
     # Hot reload (does not work, gotta work on it)
     restart: always
     labels:
       # The labels are usefull for Traefik only
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
-      # Get the routes from http
-      - "traefik.http.routers.wordpressmysite.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.wordpressmysite.entrypoints=web"
-      # Redirect these routes to https
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.wordpressmysite.middlewares=redirect-to-https@docker"
-      # Get the routes from https
-      - "traefik.http.routers.wordpressmysite-secured.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.wordpressmysite-secured.entrypoints=web-secure"
-      # Apply autentificiation with http challenge
-      - "traefik.http.routers.wordpressmysite-secured.tls=true"
-      - "traefik.http.routers.wordpressmysite-secured.tls.certresolver=myhttpchallenge"
+      - "traefik.docker.network=routing"
+      # API middlewares
+      - "traefik.http.middlewares.apk-releaser-headers.headers.customresponseheaders.X-XSS-Protection=1; mode=block"
+      - "traefik.http.middlewares.apk-releaser-headers.headers.customresponseheaders.X-Frame-Options=SAMEORIGIN"
+      - "traefik.http.middlewares.apk-releaser-headers.headers.customresponseheaders.X-Content-Type-Options=nosniff"
+      - "traefik.http.middlewares.apk-releaser-headers.headers.customresponseheaders.Content-Security-Policy=frame-ancestors 'self'"
+      - "traefik.http.middlewares.apk-releaser-headers.headers.customresponseheaders.Permission-Policy=interest-cohort=()"
+      - "traefik.http.middlewares.apk-releaser-headers.headers.customresponseheaders.Strict-Transport-Security=max-age=31536000; includeSubDomains"
+      # API
+      - "traefik.http.routers.apk-releaser.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.apk-releaser.entrypoints=websecure"
+      - "traefik.http.routers.apk-releaser.tls.certresolver=myresolver"
+      - "traefik.http.routers.apk-releaser.middlewares=apk-releaser-headers"
+      - "traefik.http.services.apk-releaser.loadbalancer.server.port=8000"
     tty: true
     command:
       gunicorn app.wsgi:application --bind 0.0.0.0:8000
@@ -69,6 +70,8 @@ services:
 # List of networks
 networks:
   apk-releaser:
+  routing:
+    external: true
 
 volumes:
   pg_data:
