@@ -1,0 +1,48 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'apk/style.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+<div class="apk-releaser">
+    <h1><img src="{% static 'image/logo.png' %}" alt="Jizo logo"/></h1>
+
+    {% if message %}
+        <div class="{{ message.type.label }}">
+            <h2>{{ message.title }}</h2>
+            <p>{{ message.message|safe }}</p>
+        </div>
+    {% endif %}
+
+    {% if apk %}
+        <div>
+            <h2> {{ apk.name }} <small>{{ apk.type.label }} version: {{ apk.version }}</small></h2>
+            <small>Mis en ligne le: {{ apk.added_at|date:"d/m/Y" }}</small>
+
+            <p>{{ apk.description }}</p>
+
+            <h3>Télécharges ta version de l'application</h3>
+            <div class="apk-links">
+                {% if apk.android_apk_url or apk.android_apk_file %}
+                <div>
+                    {% if apk.android_apk_url %}
+                        <p>Lien vers l'apk <a href="{{ apk.android_apk_url }}" target="_blank">ICI</a></p>
+                    {% endif %}
+                    {% if apk.android_apk_file %}
+                        <button type="submit" value={{ apk.android_apk_file.url }} onclick="location.href='{{ apk.android_apk_file.url }}'" name="android-button">Android</button>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if apk.ios_apk_url or apk.ios_apk_file %}
+                <div>
+                    {% if apk.ios_apk_url %}
+                        <p>Lien vers l'apk <a href="{{ apk.ios_apk_url }}" target="_blank">ICI</a></p>
+                    {% endif %}
+                    {% if apk.ios_apk_file %}
+                        <button type="submit" value={{ apk.ios_apk_file.url }} onclick="location.href='{{ apk.ios_apk_file.url }}'" name="ios-button">iOS</button>
+                    {% endif %}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</div>
