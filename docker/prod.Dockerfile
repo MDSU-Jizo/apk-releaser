@@ -73,6 +73,8 @@ RUN chmod +x  $HOME/bin/entrypoint.prod.sh
 # copy project
 COPY . $APP_HOME
 
+RUN python manage.py collectstatic --noinput
+
 # chown all the files to the app user
 RUN chown -R python:python $APP_HOME
 

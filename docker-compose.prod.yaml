@@ -12,7 +12,7 @@ services:
     # Mount the volume
     volumes:
       - .:/usr/src
-      - static_volume:/home/src/app/web/staticfiles
+        # - static_volume:/home/python/web/staticfiles
     # Cannot be launched without the db service fully working
     depends_on:
       - db
@@ -75,4 +75,4 @@ networks:
 
 volumes:
   pg_data:
-  static_volume:
+          # static_volume:
