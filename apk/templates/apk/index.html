@@ -1,4 +1,6 @@
 {% load static %}
+{% load template_tags %}
+
 <link rel="stylesheet" href="{% static 'apk/style.css' %}">
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 
@@ -43,6 +45,8 @@
                 </div>
             {% endif %}
             </div>
+
+            <small><strong>Mail développeur:</strong> <a href="mailto:{{ dev_mail|decode_b64 }}" >{{ dev_mail|decode_b64 }}</a> </small>
         </div>
     {% endif %}
 </div>
