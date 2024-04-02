@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Inter-Regular";
+    src: url("fonts/Inter/static/Inter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Belanosima-SemiBold";
+    src: url("fonts/Belanosima/Belanosima-SemiBold.ttf") format("truetype");
+}
+
+body {
+    background-color: #FDEBD8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+h1 img {
+    width: 400px;
+}
+
+div {
+    margin: 12px;
+}
+
+.apk-releaser {
+    width: 70%;
+    height: 100%;
+    background-color: #FEF5EC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.apk-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.apk-links div {
+    margin: 0 12px 12px 20px;
+}
+
+h1, h2, h3, h4, p, small {
+    color: #583822;
+    font-family: "Belanosima-Bold", sans-serif;
+}
+
+p, small {
+    font-family: "Inter-Regular", sans-serif;
+}
+
+.Info, .Note, .Warning {
+    align-self: center;
+    width: 60%;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.Info {
+    background-color: rgba(0, 107, 27, 0.45);
+}
+
+.Note {
+    background-color: rgba(0, 51, 102, 0.45);
+}
+
+.Warning {
+    background-color: rgba(204, 52, 52, 0.45);
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    background-color: #D67A0E;
+    color: #FEF5EC;
+    border: none;
+    border-radius: 12px;
+    font-size: 24px;
+    font-family: "Belanosima-Bold", sans-serif;
+}
+
+button:hover {
+    cursor: pointer;
+}
