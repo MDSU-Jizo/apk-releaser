@@ -36,8 +36,6 @@ DEBUG = bool(env('DEBUG'))
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(",")
 
-print(CSRF_TRUSTED_ORIGINS)
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
