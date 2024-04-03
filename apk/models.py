@@ -14,8 +14,8 @@ class Apk(models.Model):
     description = models.TextField()
     android_apk_url = models.CharField(max_length=255, null=True, blank=True)
     ios_apk_url = models.CharField(max_length=255, null=True, blank=True)
-    android_apk_file = models.FileField(upload_to='static/android_apk_file', null=True, blank=True)
-    ios_apk_file = models.FileField(upload_to='static/ios_apk_file', null=True, blank=True)
+    android_apk_file = models.FileField(upload_to='android_apk_file', null=True, blank=True)
+    ios_apk_file = models.FileField(upload_to='ios_apk_file', null=True, blank=True)
     added_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
