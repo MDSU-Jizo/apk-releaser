@@ -4,9 +4,6 @@ import environ
 import base64
 
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, FileResponse
-from django.template import loader
-from app.settings import BASE_DIR
 from .models import Apk, InformationMessage
 
 env = environ.Env()
